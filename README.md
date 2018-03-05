@@ -4,10 +4,10 @@ Backend code to support highlander-app
 
 ## Technologies
 
-    - Docker
-    - Kotlin 1.2
-    - SpringBoot
-    - H2 inMemory Database
+- Docker
+- Kotlin 1.2
+- SpringBoot
+- H2 inMemory Database
 
 ## How To Run
 
