@@ -15,17 +15,16 @@ class PersonService(
     val logger = LoggerFactory.getLogger(PersonService::class.java)
 
     fun register(payload: RegisterPayload): Person {
-
-        logger.info("Payload: $payload")
-
-        return personRepository.save(
-            Person (
-                id = UUID.randomUUID().toString(),
-                email = payload.email
-            )
-        ).let {
-            logger.info("Entity: $it")
-            it
+        return personRepository.findOneByEmail(payload.email).let { person ->
+            when(person) {
+                is Person -> person
+                else -> personRepository.save(
+                    Person (
+                        id = UUID.randomUUID().toString(),
+                        email = payload.email
+                    )
+                )
+            }
         }
     }
 }

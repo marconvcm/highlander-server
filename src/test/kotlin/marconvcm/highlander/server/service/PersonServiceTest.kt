@@ -19,7 +19,7 @@ class PersonServiceTest {
     lateinit var personRepository: PersonRepository
 
     @Test
-    fun register() {
+    fun itShouldRegisterUser() {
 
         val payload = RegisterPayload(email = "marconvcm@gmail.com")
 
@@ -28,6 +28,21 @@ class PersonServiceTest {
         }
 
         assert(email == payload.email)
+    }
+
+    @Test
+    fun itShouldRegisterUserTwice() {
+
+        val payload = RegisterPayload(email = "marconvcm@gmail.com")
+
+        val email = personService.register(payload).let {
+            personService.register(payload).let {
+                personRepository.findOne(it.id).email
+            }
+        }
+
+        assert(email == payload.email)
+        assert(personRepository.count() == 1L)
     }
 }
 
