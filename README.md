@@ -23,8 +23,28 @@ Make sure you have at minimum jdk8 installed in your system
 
 ### Using docker
 
-`TDB`
+As we're highlander-server is an SpringBoot app we should generate jar file before build our docker image, to do that, use follow command
 
-## Docker
+```bash
+./gradlew bootRepackage
+```
 
-`TDB`
+Then we can build our image using
+
+```bash
+docker build . -t highlander_server:1.0
+```
+
+So, now your have highlander_server image in your docker image catalog, so you can run it using
+
+```bash
+docker run -p 8080:8080 --name some_highlander highlander_server:1.0
+```
+
+### Test
+
+To check if your application is running you may use CURL to get health infomartion
+
+```bash
+ curl -s http://localhost:8080/healthcheck
+```
