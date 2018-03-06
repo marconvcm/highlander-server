@@ -23,7 +23,7 @@ Make sure you have at minimum jdk8 installed in your system
 
 ### Using docker
 
-As we're highlander-server is an SpringBoot app we should generate jar file before build our docker image, to do that, use follow command
+As highlander-server is an SpringBoot app we should generate jar file before build our docker image, to do that, use follow command
 
 ```bash
 ./gradlew bootRepackage
