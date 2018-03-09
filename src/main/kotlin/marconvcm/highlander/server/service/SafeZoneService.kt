@@ -4,6 +4,7 @@ import marconvcm.highlander.server.entity.SafeZone
 import marconvcm.highlander.server.exception.ForbbidenException
 import marconvcm.highlander.server.repository.SafeZoneRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
@@ -36,6 +37,7 @@ class SafeZoneService(
         "updated"
     }
 
+    @Scheduled(fixedRate = 1000)
     fun cleanup(expireIn: Long = 1000 * 60) {
         safeZoneRepository.findAll().first().let { safeZone ->
             when(safeZone) {
